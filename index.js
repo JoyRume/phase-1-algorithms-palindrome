@@ -1,27 +1,16 @@
 function isPalindrome(word) {
-return word === word.split('').reverse().join('')
- }
-
+  // Write your algorithm here
+}
 
 /* 
   Add your pseudocode here
-  The function takes a string word as an input argument.
-It splits the string word into an array of characters using word.split('').
-It reverses the array using reverse() and then joins the characters back into a string using join('').
-Finally, it checks if the reversed string is equal to the original string using ===.
-
 */
 
 /*
   Add written explanation of your solution here
-
-  and if the reversed string is equal to the original string, the function returns true, 
-  indicating that the string is a palindrome. If not, it returns false, indicating that t
-  he string is not a palindrome.
-
 */
 
-// You can run `node index.js` to view these console logs
+// You can run node index.js to view these console logs
 if (require.main === module) {
   // add your own custom tests in here
   console.log("Expecting: true");
@@ -34,3 +23,28 @@ if (require.main === module) {
 }
 
 module.exports = isPalindrome;
+function isPalindrome(str) {
+  // Remove any non-alphabet characters and convert to lowercase
+  str = str.replace(/[^a-z]/g, '').toLowerCase();
+
+  // Initialize two pointers, one at the beginning and one at the end
+  let left = 0;
+  let right = str.length - 1;
+
+  // Compare characters while moving the pointers towards each other
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false; // If characters don't match, it's not a palindrome
+    }
+    left++;
+    right--;
+  }
+
+  return true; // If the loop completes, it's a palindrome
+}
+
+// Test cases
+console.log(isPalindrome("madam"));  // true
+console.log(isPalindrome("robot"));  // false
+console.log(isPalindrome("racecar")); // true
+console.log(isPalindrome("hello"));   // false
